@@ -27,6 +27,18 @@ const options = reactive<OptionsState>({
   length: Length.SHORT,
   popularity: Popularity.TRENDY,
 });
+
+function setLength(value: string) {
+  options.length = value;
+}
+
+function setGender(value: string) {
+  options.gender = value;
+}
+
+function setPopularity(value: string) {
+  options.popularity = value;
+}
 </script>
 
 <template>
@@ -41,7 +53,7 @@ const options = reactive<OptionsState>({
           <button
             class="option"
             :class="options.gender === Gender.BOY && 'option-active'"
-            @click="options.gender = Gender.BOY"
+            @click="setGender(Gender.BOY)"
           >
             Boy
           </button>
@@ -49,7 +61,7 @@ const options = reactive<OptionsState>({
           <button
             class="option"
             :class="options.gender === Gender.UNISEX && 'option-active'"
-            @click="options.gender = Gender.UNISEX"
+            @click="setGender(Gender.UNISEX)"
           >
             Unisex
           </button>
@@ -57,7 +69,7 @@ const options = reactive<OptionsState>({
           <button
             class="option"
             :class="options.gender === Gender.GIRL && 'option-active'"
-            @click="options.gender = Gender.GIRL"
+            @click="setGender(Gender.GIRL)"
           >
             Girl
           </button>
@@ -71,7 +83,7 @@ const options = reactive<OptionsState>({
           <button
             class="option"
             :class="options.popularity === Popularity.TRENDY && 'option-active'"
-            @click="options.popularity = Popularity.TRENDY"
+            @click="setPopularity(Popularity.TRENDY)"
           >
             Trendy
           </button>
@@ -79,7 +91,7 @@ const options = reactive<OptionsState>({
           <button
             class="option"
             :class="options.popularity === Popularity.UNIQUE && 'option-active'"
-            @click="options.popularity = Popularity.UNIQUE"
+            @click="setPopularity(Popularity.UNIQUE)"
           >
             Unique
           </button>
@@ -92,24 +104,24 @@ const options = reactive<OptionsState>({
         <div class="option-buttons">
           <button
             class="option"
-            :class="options.unique === Length.LONG && 'option-active'"
-            @click="options.unique = Length.LONG"
+            :class="options.length === Length.LONG && 'option-active'"
+            @click="setLength(Length.LONG)"
           >
             Long
           </button>
 
           <button
             class="option"
-            :class="options.unique === Length.ALL && 'option-active'"
-            @click="options.unique = Length.ALL"
+            :class="options.length === Length.ALL && 'option-active'"
+            @click="setLength(Length.ALL)"
           >
             All
           </button>
 
           <button
             class="option"
-            :class="options.unique === Length.SHORT && 'option-active'"
-            @click="options.unique = Length.SHORT"
+            :class="options.length === Length.SHORT && 'option-active'"
+            @click="setLength(Length.SHORT)"
           >
             Short
           </button>
