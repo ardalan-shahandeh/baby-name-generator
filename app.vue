@@ -1,8 +1,31 @@
-<script setup>
-const options = reactive({
-  gender: "Girl",
-  popularity: "Unique",
-  length: "Long",
+<script setup lang="ts">
+enum Gender {
+  GIRL = "Girl",
+  BOY = "Boy",
+  UNISEX = "Unisex",
+}
+
+enum Popularity {
+  TRENDY = "Trendy",
+  UNIQUE = "Unique",
+}
+
+enum Length {
+  LONG = "Long",
+  SHORT = "Short",
+  ALL = "All",
+}
+
+interface OptionsState {
+  gender: Gender;
+  popularity: Popularity;
+  length: Length;
+}
+
+const options = reactive<OptionsState>({
+  gender: Gender.GIRL,
+  length: Length.SHORT,
+  popularity: Popularity.TRENDY,
 });
 </script>
 
@@ -17,21 +40,21 @@ const options = reactive({
         <div class="option-buttons">
           <button
             class="option"
-            :class="options.gender === 'Boy' && 'option-active'"
+            :class="options.gender === Gender.BOY && 'option-active'"
           >
             Boy
           </button>
 
           <button
             class="option"
-            :class="options.gender === 'Unisex' && 'option-active'"
+            :class="options.gender === Gender.UNISEX && 'option-active'"
           >
             Unisex
           </button>
 
           <button
             class="option"
-            :class="options.gender === 'Girl' && 'option-active'"
+            :class="options.gender === Gender.GIRL && 'option-active'"
           >
             Girl
           </button>
@@ -44,14 +67,14 @@ const options = reactive({
         <div class="option-buttons">
           <button
             class="option"
-            :class="options.popularity === 'Trendy' && 'option-active'"
+            :class="options.popularity === Popularity.TRENDY && 'option-active'"
           >
             Trendy
           </button>
 
           <button
             class="option"
-            :class="options.popularity === 'Unique' && 'option-active'"
+            :class="options.popularity === Popularity.UNIQUE && 'option-active'"
           >
             Unique
           </button>
@@ -64,21 +87,21 @@ const options = reactive({
         <div class="option-buttons">
           <button
             class="option"
-            :class="options.unique === 'Long' && 'option-active'"
+            :class="options.unique === Length.LONG && 'option-active'"
           >
             Long
           </button>
 
           <button
             class="option"
-            :class="options.unique === 'All' && 'option-active'"
+            :class="options.unique === Length.ALL && 'option-active'"
           >
             All
           </button>
 
           <button
             class="option"
-            :class="options.length === 'Short' && 'option-active'"
+            :class="options.length === Length.SHORT && 'option-active'"
           >
             Short
           </button>
@@ -142,4 +165,6 @@ const options = reactive({
 </style>
 
 function reactive(arg0: { gender: string; popularity: string; length: string; })
-{ throw new Error("Function not implemented."); }
+{ throw new Error("Function not implemented."); } function reactive(arg0: {
+gender: string; popularity: string; length: string; milk: boolean; }) { throw
+new Error("Function not implemented."); }
