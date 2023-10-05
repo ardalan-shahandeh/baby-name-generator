@@ -1,20 +1,5 @@
 <script setup lang="ts">
-enum Gender {
-  GIRL = "Girl",
-  BOY = "Boy",
-  UNISEX = "Unisex",
-}
-
-enum Popularity {
-  TRENDY = "Trendy",
-  UNIQUE = "Unique",
-}
-
-enum Length {
-  LONG = "Long",
-  SHORT = "Short",
-  ALL = "All",
-}
+import { Gender, Popularity, Length, names } from "@/data";
 
 interface OptionsState {
   gender: Gender;
@@ -39,6 +24,20 @@ function setGender(value: string) {
 function setPopularity(value: string) {
   options.popularity = value;
 }
+
+function computSelectedNames() {
+  const filterNames = names
+    .filter((name) => name.gender === options.gender)
+    .filter((name) => name.popularity === options.popularity)
+    .filter((name) => {
+      if (options.length === Length.ALL) return true;
+      else return name.length === options.length;
+    });
+
+  selectedNames.value = filterNames.map((name) => name.name);
+}
+
+const selectedNames = ref<string[]>([]);
 </script>
 
 <template>
@@ -127,7 +126,17 @@ function setPopularity(value: string) {
           </button>
         </div>
       </div>
+
+      <button class="primary" @click="computSelectedNames">Find Name's</button>
     </div>
+
+    <button
+      class="result"
+      v-for="selectedName in selectedNames"
+      :key="selectedName"
+    >
+      {{ selectedName }}
+    </button>
   </div>
 </template>
 
@@ -182,9 +191,25 @@ function setPopularity(value: string) {
   background-color: rgb(249, 87, 89);
   color: white;
 }
-</style>
 
-function reactive(arg0: { gender: string; popularity: string; length: string; })
-{ throw new Error("Function not implemented."); } function reactive(arg0: {
-gender: string; popularity: string; length: string; milk: boolean; }) { throw
-new Error("Function not implemented."); }
+.primary {
+  background-color: rgb(249, 87, 89);
+  color: white;
+  border-radius: 6.5rem;
+  border: none;
+  padding: 0.75rem 4rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.result {
+  background-color: rgb(27, 60, 138);
+  color: white;
+  border-radius: 2rem;
+  border: none;
+  padding: 1rem;
+  font-size: 0.75rem;
+  margin: 2rem 0.5rem;
+  cursor: pointer;
+}
+</style>
