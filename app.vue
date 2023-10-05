@@ -1,3 +1,11 @@
+<script setup>
+const options = reactive({
+  gender: "Girl",
+  popularity: "Unique",
+  length: "Long",
+});
+</script>
+
 <template>
   <div class="container">
     <h1>Baby Name Generator</h1>
@@ -7,11 +15,26 @@
         <h4>1) Choose a gender</h4>
 
         <div class="option-buttons">
-          <button class="option">Boy</button>
+          <button
+            class="option"
+            :class="options.gender === 'Boy' && 'option-active'"
+          >
+            Boy
+          </button>
 
-          <button class="option">Unisex</button>
+          <button
+            class="option"
+            :class="options.gender === 'Unisex' && 'option-active'"
+          >
+            Unisex
+          </button>
 
-          <button class="option">Girl</button>
+          <button
+            class="option"
+            :class="options.gender === 'Girl' && 'option-active'"
+          >
+            Girl
+          </button>
         </div>
       </div>
 
@@ -19,9 +42,19 @@
         <h4>2) Choos the name's popularity</h4>
 
         <div class="option-buttons">
-          <button class="option">Trendy</button>
+          <button
+            class="option"
+            :class="options.popularity === 'Trendy' && 'option-active'"
+          >
+            Trendy
+          </button>
 
-          <button class="option">Unique</button>
+          <button
+            class="option"
+            :class="options.popularity === 'Unique' && 'option-active'"
+          >
+            Unique
+          </button>
         </div>
       </div>
 
@@ -29,11 +62,26 @@
         <h4>3) Choos name length</h4>
 
         <div class="option-buttons">
-          <button class="option">Long</button>
+          <button
+            class="option"
+            :class="options.unique === 'Long' && 'option-active'"
+          >
+            Long
+          </button>
 
-          <button class="option">All</button>
+          <button
+            class="option"
+            :class="options.unique === 'All' && 'option-active'"
+          >
+            All
+          </button>
 
-          <button class="option">Short</button>
+          <button
+            class="option"
+            :class="options.length === 'Short' && 'option-active'"
+          >
+            Short
+          </button>
         </div>
       </div>
     </div>
@@ -86,4 +134,12 @@
   cursor: pointer;
   font-weight: 300;
 }
+
+.option-active {
+  background-color: rgb(249, 87, 89);
+  color: white;
+}
 </style>
+
+function reactive(arg0: { gender: string; popularity: string; length: string; })
+{ throw new Error("Function not implemented."); }
