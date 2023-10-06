@@ -18,6 +18,19 @@ const props = defineProps<OptionProps>();
 //   option: Object,
 //   options: Object,
 // });
+
+const computedButtonClasses = (value: string, index: number) => {
+  const classNames = [];
+  if (props.options[props.option.category] === value) {
+    classNames.push("option-active");
+  }
+  if (index === 0) classNames.push("option-left");
+
+  if (index === props.option.buttons.length - 1)
+    classNames.push("option-right");
+
+  return classNames.join(" ");
+};
 </script>
 
 <template>
@@ -25,10 +38,10 @@ const props = defineProps<OptionProps>();
 
   <div class="option-buttons">
     <button
-      v-for="value in option.buttons"
-      :key="value"
+      v-for="(value, index) in option.buttons"
+      :key="index"
       class="option"
-      :class="options[option.category] === value && 'option-active'"
+      :class="computedButtonClasses(value, index)"
       @click="options[option.category] = value"
     >
       {{ value }}
@@ -37,11 +50,11 @@ const props = defineProps<OptionProps>();
 </template>
 
 <style scoped>
-.option-buttons .option:first-child {
+.option-left {
   border-radius: 1rem 0 0 1rem;
 }
 
-.option-buttons .option:last-child {
+.option-right {
   border-radius: 0 1rem 1rem 0;
 }
 
