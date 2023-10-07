@@ -1,15 +1,18 @@
 <template>
   <div class="card">
     <h4>
-      {{ props }}
+      {{ props.name }}
     </h4>
 
     <p>x</p>
   </div>
 </template>
 
-<script setup>
-const props = defineProps();
+<script setup lang="ts">
+interface NameProps {
+  name: string;
+}
+const props = defineProps<NameProps>();
 </script>
 
 <style>

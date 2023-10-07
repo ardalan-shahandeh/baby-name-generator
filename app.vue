@@ -63,13 +63,6 @@ const optionArray = [
 
     <div class="card-container">
       <CardName v-for="name in selectedNames" :key="name" :name="name" />
-      <!-- <div v-for="name in selectedNames" :key="name" class="card">
-        <h4>
-          {{ name }}
-        </h4>
-
-        <p>x</p>
-      </div> -->
     </div>
   </div>
 </template>
